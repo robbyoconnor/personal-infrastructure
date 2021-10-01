@@ -66,24 +66,6 @@ resource "cloudflare_record" "terraform_managed_resource_1a22591f66b79b722ebf555
   zone_id  = "945e79cc4e8857f3680b17c46e908d46"
 }
 
-resource "cloudflare_record" "terraform_managed_resource_2f10d89981b22bc97db141c008cb0234" {
-  name    = "_gitlab-pages-verification-code"
-  proxied = false
-  ttl     = 300
-  type    = "TXT"
-  value   = "_gitlab-pages-verification-code=a7b869031003da5b397e71f323097cdc"
-  zone_id = "945e79cc4e8857f3680b17c46e908d46"
-}
-
-resource "cloudflare_record" "terraform_managed_resource_2cbffed83239c07d0fbf5c0d01186a23" {
-  name    = "oconnor.ninja"
-  proxied = false
-  ttl     = 300
-  type    = "TXT"
-  value   = "gitlab-pages-verification-code=e7bf3465da74477a92874cbcce1ffd72"
-  zone_id = "945e79cc4e8857f3680b17c46e908d46"
-}
-
 resource "cloudflare_record" "terraform_managed_resource_0f4b81265202e7cbbf2322f493fa04e9" {
   name    = "oconnor.ninja"
   proxied = false

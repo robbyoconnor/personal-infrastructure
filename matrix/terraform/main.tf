@@ -8,14 +8,6 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 3.0"
     }
-    gitlab = {
-      source  = "gitlabhq/gitlab"
-      version = "~> 3.0"
-    }
-    github = {
-      source  = "integrations/github"
-      version = "~> 4.0"
-    }
   }
 }
 
@@ -28,8 +20,4 @@ provider "digitalocean" {
 
 provider "cloudflare" {
   api_token = var.cf_api_token
-}
-
-provider "gitlab" {
-  token = var.gitlab_token
 }

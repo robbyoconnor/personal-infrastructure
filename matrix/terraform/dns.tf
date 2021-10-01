@@ -16,11 +16,84 @@ resource "cloudflare_record" "matrix_aaaa" {
 }
 
 
-resource "cloudflare_record" "apex_cname" {
+resource "cloudflare_record" "apex_a_1" {
   zone_id = var.cf_zone
   name    = "@"
   type    = "A"
-  value   = "35.185.44.232"
+  value   = "185.199.108.153"
+  ttl     = 300
+  proxied = false
+}
+
+resource "cloudflare_record" "apex_a_2" {
+  zone_id = var.cf_zone
+  name    = "@"
+  type    = "A"
+  value   = "185.199.109.153"
+  ttl     = 300
+  proxied = false
+}
+
+resource "cloudflare_record" "apex_a_3" {
+  zone_id = var.cf_zone
+  name    = "@"
+  type    = "A"
+  value   = "185.199.110.153"
+  ttl     = 300
+  proxied = false
+}
+
+resource "cloudflare_record" "apex_a_4" {
+  zone_id = var.cf_zone
+  name    = "@"
+  type    = "A"
+  value   = "185.199.111.153"
+  ttl     = 300
+  proxied = false
+}
+
+resource "cloudflare_record" "apex_aaaa_1" {
+  zone_id = var.cf_zone
+  name    = "@"
+  type    = "AAAA"
+  value   = "2606:50c0:8000::153"
+  ttl     = 300
+  proxied = false
+}
+
+resource "cloudflare_record" "apex_aaaa_2" {
+  zone_id = var.cf_zone
+  name    = "@"
+  type    = "AAAA"
+  value   = "2606:50c0:8001::153"
+  ttl     = 300
+  proxied = false
+}
+
+resource "cloudflare_record" "apex_aaaa_3" {
+  zone_id = var.cf_zone
+  name    = "@"
+  type    = "AAAA"
+  value   = "2606:50c0:8002::153"
+  ttl     = 300
+  proxied = false
+}
+
+resource "cloudflare_record" "apex_aaaa_4" {
+  zone_id = var.cf_zone
+  name    = "@"
+  type    = "AAAA"
+  value   = "2606:50c0:8003::153"
+  ttl     = 300
+  proxied = false
+}
+
+resource "cloudflare_record" "www_cname" {
+
+  zone_id = var.cf_zone
+  name    = "www"
+  type    = "CNAME"
+  value   = "robbyoconnor.github.io"
   ttl     = 300
   proxied = false
 }
