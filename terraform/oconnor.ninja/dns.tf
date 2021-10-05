@@ -1,4 +1,4 @@
-resource "cloudflare_record" "terraform_managed_resource_1941d104c37285b9e1c1fc397eed793c" {
+resource "cloudflare_record" "blogspot_cname" {
   name    = "robby"
   proxied = false
   ttl     = 1
@@ -7,23 +7,13 @@ resource "cloudflare_record" "terraform_managed_resource_1941d104c37285b9e1c1fc3
   zone_id = "945e79cc4e8857f3680b17c46e908d46"
 }
 
-resource "cloudflare_record" "terraform_managed_resource_8a557126a3df1e4f48611e07789afe0a" {
+resource "cloudflare_record" "tom_cname" {
   name    = "tom"
   proxied = false
   ttl     = 1
   type    = "CNAME"
   value   = "tomoconnor.eu"
   zone_id = "945e79cc4e8857f3680b17c46e908d46"
-}
-
-resource "cloudflare_record" "terraform_managed_resource_200b569ce838d0a0e8faa0fe56009db3" {
-  name     = "oconnor.ninja"
-  priority = 10
-  proxied  = false
-  ttl      = 1
-  type     = "MX"
-  value    = "aspmx2.googlemail.com"
-  zone_id  = "945e79cc4e8857f3680b17c46e908d46"
 }
 
 resource "cloudflare_record" "terraform_managed_resource_38ff8351c221956fcd1fe5a34f9a1238" {
@@ -33,6 +23,16 @@ resource "cloudflare_record" "terraform_managed_resource_38ff8351c221956fcd1fe5a
   ttl      = 1
   type     = "MX"
   value    = "aspmx.l.google.com"
+  zone_id  = "945e79cc4e8857f3680b17c46e908d46"
+}
+
+resource "cloudflare_record" "terraform_managed_resource_200b569ce838d0a0e8faa0fe56009db3" {
+  name     = "oconnor.ninja"
+  priority = 10
+  proxied  = false
+  ttl      = 1
+  type     = "MX"
+  value    = "aspmx2.googlemail.com"
   zone_id  = "945e79cc4e8857f3680b17c46e908d46"
 }
 
