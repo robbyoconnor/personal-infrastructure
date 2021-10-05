@@ -34,6 +34,15 @@ resource "cloudflare_record" "terraform_managed_resource_d7f367583a7cfa0ac4277d7
   zone_id = "2958bbb87c4fdadf9ff97d1c29b5dba2"
 }
 
+resource "cloudflare_record" "www_cname" {
+  name    = "www"
+  proxied = false
+  ttl     = 1
+  type    = "CNAME"
+  value   = "185.199.108.153"
+  zone_id = "2958bbb87c4fdadf9ff97d1c29b5dba2"
+}
+
 resource "cloudflare_record" "terraform_managed_resource_fc12069f8c735315a81a1732fb055a3e" {
   name    = "cunycodesdocker17"
   proxied = false
