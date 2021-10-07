@@ -98,25 +98,6 @@ resource "cloudflare_record" "www_cname" {
   proxied = false
 }
 
-resource "cloudflare_record" "gitlab_verification" {
-  zone_id = var.cf_zone
-  name    = "_gitlab-pages-verification-code"
-  type    = "TXT"
-  value   = "_gitlab-pages-verification-code=a7b869031003da5b397e71f323097cdc"
-  ttl     = 300
-  proxied = false
-}
-
-resource "cloudflare_record" "gitlab_verification2" {
-  zone_id = var.cf_zone
-  name    = "oconnor.ninja"
-  type    = "TXT"
-  value   = "gitlab-pages-verification-code=e7bf3465da74477a92874cbcce1ffd72"
-  ttl     = 300
-  proxied = false
-}
-
-
 resource "cloudflare_record" "element_cname" {
   zone_id = var.cf_zone
   name    = "element"
