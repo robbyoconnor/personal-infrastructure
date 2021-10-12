@@ -1,5 +1,5 @@
 resource "local_file" "hosts_file" {
-  content = templatefile("files/hosts.tmpl",
+  content = templatefile(var.hosts_template,
     {
       "hostname" : digitalocean_droplet.matrix-do.name
   })
@@ -9,7 +9,7 @@ resource "local_file" "hosts_file" {
 resource "digitalocean_droplet" "matrix-do" {
   ssh_keys = [digitalocean_ssh_key.matrix-do.fingerprint]
   image    = var.ubuntu
-  region   = var.do_nyc3
+  region   = "nyc3"
   size     = "s-2vcpu-4gb"
   backups  = true
   ipv6     = true
@@ -31,7 +31,7 @@ resource "digitalocean_droplet" "matrix-do" {
 
 resource "digitalocean_ssh_key" "matrix-do" {
   name       = "matrix-do"
-  public_key = file(var.ssh_key_path)
+  public_key = file(var.pub_key)
 }
 
 resource "digitalocean_firewall" "firewall" {

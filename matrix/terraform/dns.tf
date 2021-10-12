@@ -16,76 +16,26 @@ resource "cloudflare_record" "matrix_aaaa" {
 }
 
 
-resource "cloudflare_record" "apex_a_1" {
-  zone_id = var.cf_zone
-  name    = "@"
-  type    = "A"
-  value   = "185.199.108.153"
-  ttl     = 300
-  proxied = false
+resource "cloudflare_record" "apex_a_records" {
+  zone_id  = var.cf_zone
+  name     = "@"
+  type     = "A"
+  for_each = var.gh_pages_ipv4
+  value    = each.value
+  ttl      = 300
+  proxied  = false
+
 }
 
-resource "cloudflare_record" "apex_a_2" {
-  zone_id = var.cf_zone
-  name    = "@"
-  type    = "A"
-  value   = "185.199.109.153"
-  ttl     = 300
-  proxied = false
-}
+resource "cloudflare_record" "apex_aaaa" {
+  zone_id  = var.cf_zone
+  name     = "@"
+  type     = "AAAA"
+  for_each = var.gh_pages_ipv6
+  value    = each.value
+  ttl      = 300
+  proxied  = false
 
-resource "cloudflare_record" "apex_a_3" {
-  zone_id = var.cf_zone
-  name    = "@"
-  type    = "A"
-  value   = "185.199.110.153"
-  ttl     = 300
-  proxied = false
-}
-
-resource "cloudflare_record" "apex_a_4" {
-  zone_id = var.cf_zone
-  name    = "@"
-  type    = "A"
-  value   = "185.199.111.153"
-  ttl     = 300
-  proxied = false
-}
-
-resource "cloudflare_record" "apex_aaaa_1" {
-  zone_id = var.cf_zone
-  name    = "@"
-  type    = "AAAA"
-  value   = "2606:50c0:8000::153"
-  ttl     = 300
-  proxied = false
-}
-
-resource "cloudflare_record" "apex_aaaa_2" {
-  zone_id = var.cf_zone
-  name    = "@"
-  type    = "AAAA"
-  value   = "2606:50c0:8001::153"
-  ttl     = 300
-  proxied = false
-}
-
-resource "cloudflare_record" "apex_aaaa_3" {
-  zone_id = var.cf_zone
-  name    = "@"
-  type    = "AAAA"
-  value   = "2606:50c0:8002::153"
-  ttl     = 300
-  proxied = false
-}
-
-resource "cloudflare_record" "apex_aaaa_4" {
-  zone_id = var.cf_zone
-  name    = "@"
-  type    = "AAAA"
-  value   = "2606:50c0:8003::153"
-  ttl     = 300
-  proxied = false
 }
 
 resource "cloudflare_record" "www_cname" {
@@ -98,13 +48,14 @@ resource "cloudflare_record" "www_cname" {
   proxied = false
 }
 
-resource "cloudflare_record" "element_cname" {
-  zone_id = var.cf_zone
-  name    = "element"
-  type    = "CNAME"
-  value   = "matrix.oconnor.ninja"
-  ttl     = 300
-  proxied = "false"
+resource "cloudflare_record" "matrix_cnames" {
+  zone_id  = var.cf_zone
+  for_each = var.matrix_cnames
+  name     = each.value
+  type     = "CNAME"
+  value    = "matrix.oconnor.ninja"
+  ttl      = 300
+  proxied  = "false"
 }
 
 resource "cloudflare_record" "_matrix_identity" {
@@ -123,57 +74,4 @@ resource "cloudflare_record" "_matrix_identity" {
     port     = 443
     target   = "matrix.oconnor.ninja"
   }
-}
-
-# resource "cloudflare_record" "_matrix" {
-#   zone_id = var.cf_zone
-#   name    = "_matrix._tcp"
-#   type    = "SRV"
-#   ttl     = 300
-#   proxied = "false"
-#   data {
-
-#     service  = "_matrix"
-#     proto    = "_tcp"
-#     name     = "matrix_srv"
-#     priority = 10
-#     weight   = 0
-#     port     = 443
-#     target   = "matrix.oconnor.ninja"
-#   }
-# }
-
-resource "cloudflare_record" "dimension_cname" {
-  zone_id = var.cf_zone
-  name    = "dimension"
-  type    = "CNAME"
-  value   = "matrix.oconnor.ninja"
-  ttl     = 300
-  proxied = "false"
-}
-
-resource "cloudflare_record" "jitsi_cname" {
-  zone_id = var.cf_zone
-  name    = "jitsi"
-  type    = "CNAME"
-  value   = "matrix.oconnor.ninja"
-  ttl     = 300
-  proxied = "false"
-}
-resource "cloudflare_record" "stats_cname" {
-  zone_id = var.cf_zone
-  name    = "stats"
-  type    = "CNAME"
-  value   = "matrix.oconnor.ninja"
-  ttl     = 300
-  proxied = "false"
-}
-
-resource "cloudflare_record" "goneb_cname" {
-  zone_id = var.cf_zone
-  name    = "goneb"
-  type    = "CNAME"
-  value   = "matrix.oconnor.ninja"
-  ttl     = 300
-  proxied = "false"
 }
