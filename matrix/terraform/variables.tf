@@ -24,8 +24,7 @@ variable "gh_pages_ipv4" {
   type        = set(string)
 }
 variable "gh_pages_ipv6" {
-
-  description = "IPv4 records for GitHub pages"
+  description = "IPv6 records for GitHub pages"
   default     = ["2606:50c0:8000::153", "2606:50c0:8001::153", "2606:50c0:8002::153", "2606:50c0:8003::153"]
   type        = set(string)
 }
