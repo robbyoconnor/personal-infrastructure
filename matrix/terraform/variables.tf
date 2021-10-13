@@ -13,6 +13,7 @@ variable "ubuntu" {
 
 variable "cf_zone" {}
 variable "cf_api_token" {}
+
 variable "matrix_cnames" {
   description = "CNAME records for matrix"
   default     = ["dimension", "stats", "jitsi", "element", "goneb"]

@@ -15,39 +15,6 @@ resource "cloudflare_record" "matrix_aaaa" {
   proxied = false
 }
 
-
-resource "cloudflare_record" "apex_a_records" {
-  zone_id  = var.cf_zone
-  name     = "@"
-  type     = "A"
-  for_each = var.gh_pages_ipv4
-  value    = each.value
-  ttl      = 300
-  proxied  = false
-
-}
-
-resource "cloudflare_record" "apex_aaaa" {
-  zone_id  = var.cf_zone
-  name     = "@"
-  type     = "AAAA"
-  for_each = var.gh_pages_ipv6
-  value    = each.value
-  ttl      = 300
-  proxied  = false
-
-}
-
-resource "cloudflare_record" "www_cname" {
-
-  zone_id = var.cf_zone
-  name    = "www"
-  type    = "CNAME"
-  value   = "robbyoconnor.github.io"
-  ttl     = 300
-  proxied = false
-}
-
 resource "cloudflare_record" "matrix_cnames" {
   zone_id  = var.cf_zone
   for_each = var.matrix_cnames
@@ -74,4 +41,14 @@ resource "cloudflare_record" "_matrix_identity" {
     port     = 443
     target   = "matrix.oconnor.ninja"
   }
+}
+
+
+module "oconnor_ninja" {
+  source          = "robbyoconnor/github-pages-dns/cloudflare"
+  version         = "1.0.0"
+  gh_username     = "robbyoconnor"
+  gh_pages_cnames = ["www"]
+  cf_zone_id      = var.cf_zone
+  cf_api_token    = var.cf_api_token
 }

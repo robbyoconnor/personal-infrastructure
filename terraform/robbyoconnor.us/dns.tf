@@ -1,52 +1,3 @@
-resource "cloudflare_record" "apex_a_records" {
-  zone_id  = var.cf_zone
-  name     = "@"
-  type     = "A"
-  for_each = var.gh_pages_ipv4
-  value    = each.value
-  ttl      = 300
-  proxied  = false
-
-}
-
-resource "cloudflare_record" "apex_aaaa" {
-  zone_id  = var.cf_zone
-  name     = "@"
-  type     = "AAAA"
-  for_each = var.gh_pages_ipv6
-  value    = each.value
-  ttl      = 300
-  proxied  = false
-
-}
-
-resource "cloudflare_record" "www_cname" {
-  name    = "www"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "robbyoconnor.github.io"
-  zone_id = var.cf_zone
-}
-
-resource "cloudflare_record" "cunycodesdockerdocker17" {
-  name    = "cunycodesdocker17"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "robbyoconnor.github.io"
-  zone_id = var.cf_zone
-}
-
-resource "cloudflare_record" "talks" {
-  name    = "talks"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "robbyoconnor.github.io"
-  zone_id = var.cf_zone
-}
-
 resource "cloudflare_record" "keybase_proof" {
   name    = "robbyoconnor.us"
   proxied = false
@@ -63,4 +14,13 @@ module "email" {
   ttl        = 300
   dkim       = var.dkim
   dmarc      = var.dmarc
+}
+
+module "robbyoconnor_us_github_pages" {
+  source          = "robbyoconnor/github-pages-dns/cloudflare"
+  version         = "1.0.0"
+  gh_username     = "robbyoconnor"
+  gh_pages_cnames = ["cunycodesdocker17", "talks", "www"]
+  cf_zone_id      = var.cf_zone
+  cf_api_token    = var.cf_api_token
 }
