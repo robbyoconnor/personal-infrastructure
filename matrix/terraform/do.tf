@@ -97,6 +97,11 @@ resource "digitalocean_firewall" "firewall" {
     port_range       = "4443"
     source_addresses = ["0.0.0.0/0", "::/0"]
   }
+  inbound_rule {
+    protocol         = "tcp"
+    port_range       = "113"
+    source_addresses = ["0.0.0.0/0", "::/0"]
+  }
 
   inbound_rule {
     protocol         = "udp"
