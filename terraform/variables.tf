@@ -1,4 +1,4 @@
-variable "cf_zone" {}
+variable "cf_zone_id" {}
 variable "cf_api_token" {}
 variable "dkim" {}
 variable "dmarc" {}

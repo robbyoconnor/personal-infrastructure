@@ -1,5 +1,5 @@
 resource "cloudflare_record" "matrix_a" {
-  zone_id = var.cf_zone
+  zone_id = var.cf_zone_id
   name    = "matrix"
   type    = "A"
   value   = digitalocean_droplet.matrix-do.ipv4_address
@@ -7,7 +7,7 @@ resource "cloudflare_record" "matrix_a" {
 }
 
 resource "cloudflare_record" "matrix_aaaa" {
-  zone_id = var.cf_zone
+  zone_id = var.cf_zone_id
   name    = "matrix"
   type    = "AAAA"
   value   = digitalocean_droplet.matrix-do.ipv6_address
@@ -16,7 +16,7 @@ resource "cloudflare_record" "matrix_aaaa" {
 }
 
 resource "cloudflare_record" "matrix_cnames" {
-  zone_id  = var.cf_zone
+  zone_id  = var.cf_zone_id
   for_each = var.matrix_cnames
   name     = each.value
   type     = "CNAME"
@@ -26,7 +26,7 @@ resource "cloudflare_record" "matrix_cnames" {
 }
 
 resource "cloudflare_record" "_matrix_identity" {
-  zone_id = var.cf_zone
+  zone_id = var.cf_zone_id
   name    = "_matrix_identity._tcp"
   type    = "SRV"
   ttl     = 300
@@ -49,6 +49,6 @@ module "oconnor_ninja" {
   version         = "1.0.0"
   gh_username     = "robbyoconnor"
   gh_pages_cnames = ["www"]
-  cf_zone_id      = var.cf_zone
+  cf_zone_id      = var.cf_zone_id
   cf_api_token    = var.cf_api_token
 }

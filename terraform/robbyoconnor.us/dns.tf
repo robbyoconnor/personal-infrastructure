@@ -1,15 +1,15 @@
 resource "cloudflare_record" "keybase_proof" {
   name    = "robbyoconnor.us"
   proxied = false
-  ttl     = 1
+  ttl     = 300
   type    = "TXT"
   value   = "keybase-site-verification=zPZHWDe-j4GpYedHRv5we7IlHuclkwYDNaN8ykEJrbo"
-  zone_id = var.cf_zone
+  zone_id = var.cf_zone_id
 }
 
 module "email" {
   source     = "git@github.com:jlison/terraform-cloudflare-gsuite-mx.git"
-  zone_id    = var.cf_zone
+  zone_id    = var.cf_zone_id
   sub_domain = "@"
   ttl        = 300
   dkim       = var.dkim
@@ -21,6 +21,6 @@ module "robbyoconnor_us_github_pages" {
   version         = "1.0.0"
   gh_username     = "robbyoconnor"
   gh_pages_cnames = ["cunycodesdocker17", "talks", "www"]
-  cf_zone_id      = var.cf_zone
+  cf_zone_id      = var.cf_zone_id
   cf_api_token    = var.cf_api_token
 }

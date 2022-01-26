@@ -11,7 +11,7 @@ variable "ubuntu" {
   default     = "ubuntu-20-04-x64"
 }
 
-variable "cf_zone" {}
+variable "cf_zone_id" {}
 variable "cf_api_token" {}
 
 variable "matrix_cnames" {
