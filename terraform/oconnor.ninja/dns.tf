@@ -26,10 +26,12 @@ resource "cloudflare_record" "keybase_proof" {
 }
 
 module "email" {
-  source     = "git@github.com:jlison/terraform-cloudflare-gsuite-mx.git"
-  zone_id    = var.cf_zone_id
-  sub_domain = "@"
-  ttl        = 300
-  dkim       = var.dkim
-  dmarc      = var.dmarc
+  source       = "robbyoconnor/fastmail-mx/cloudflare"
+  version      = "1.0.0"
+  cf_zone_id   = var.cf_zone_id
+  cf_api_token = var.cf_api_token
+  sub_domain   = "@"
+  domain_name  = "oconnor.ninja"
+  ttl          = 300
+  dmarc        = var.dmarc
 }

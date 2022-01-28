@@ -1,6 +1,5 @@
 variable "cf_zone_id" {}
 variable "cf_api_token" {}
-variable "dkim" {}
 variable "dmarc" {}
 
 variable "gh_pages_ipv4" {
