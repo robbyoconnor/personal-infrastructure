@@ -25,6 +25,15 @@ resource "cloudflare_record" "keybase_proof" {
   zone_id = var.cf_zone_id
 }
 
+resource "cloudflare_record" "github_pages_proof" {
+  name    = "_github-pages-challenge-robbyoconnor"
+  proxied = false
+  ttl     = 300
+  type    = "TXT"
+  value   = "2d4e1b2e545ebd1fc71edd94eb237f"
+  zone_id = var.cf_zone_id
+}
+
 module "email" {
   source       = "robbyoconnor/fastmail-mx/cloudflare"
   version      = "1.0.0"

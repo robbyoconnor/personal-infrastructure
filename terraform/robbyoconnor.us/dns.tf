@@ -18,6 +18,15 @@ module "email" {
   dmarc        = var.dmarc
 }
 
+resource "cloudflare_record" "github_pages_proof" {
+  name    = "_github-pages-challenge-robbyoconnor"
+  proxied = false
+  ttl     = 300
+  type    = "TXT"
+  value   = "7be6958663b095891252af2d99f075"
+  zone_id = var.cf_zone_id
+}
+
 module "robbyoconnor_us_github_pages" {
   source          = "robbyoconnor/github-pages-dns/cloudflare"
   version         = "1.0.0"
